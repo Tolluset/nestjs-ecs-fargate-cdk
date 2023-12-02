@@ -1,8 +1,6 @@
 import { Module } from "@nestjs/common";
 import { ConfigModule } from "@nestjs/config";
 
-import { AppController } from "./app.controller";
-import { AppService } from "./app.service";
 import { HealthCheckController } from "./health-check/health-check.controller";
 import { HealthCheckService } from "./health-check/health-check.service";
 
@@ -13,7 +11,7 @@ import { HealthCheckService } from "./health-check/health-check.service";
       isGlobal: true,
     }),
   ],
-  controllers: [AppController, HealthCheckController],
-  providers: [AppService, HealthCheckService],
+  controllers: [HealthCheckController],
+  providers: [HealthCheckService],
 })
 export class AppModule {}
