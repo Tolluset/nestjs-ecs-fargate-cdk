@@ -1,0 +1,46 @@
+name: deploy-manager
+
+on:
+  workflow_dispatch:
+    inputs:
+      service_name:
+        description: "service name"
+        required: true
+        default: "app"
+
+      image_version:
+        description: "image version"
+        required: true
+        default: "latest"
+
+      env:
+        description: "environmet name"
+        required: true
+        default: "production"
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    permissions:
+      id-token: write
+    steps:
+      - run: |
+          echo "${{ github.event.inputs.service_name }}"
+          echo "${{ github.event.inputs.image_version }}"
+
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v2
+
+      - run: pnpm i --frozen-lockfile
+      # - run: pnpm NODE_ENV=${{ github.event.inputs.env }} cdk:build
+
+      - uses: aws-actions/configure-aws-credentials@v4
+        with:
+          role-to-assume: ${{ secrets.OIDC_ROLE_ARN }}
+          aws-region: ap-northeast-2
+
+      - name: get images
+        run: |
+          echo "get images from ecr"
+
+      # - run: pnpm NODE_ENV=${{ github.event.inputs.env }} cdk:deploy
