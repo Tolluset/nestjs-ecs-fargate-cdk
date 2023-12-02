@@ -22,5 +22,6 @@
   "dependencies": {
     "aws-cdk-lib": "2.113.0",
     "constructs": "^10.0.0"
-  }
+  },
+  "packageManager": "pnpm@8.10.5"
 }
