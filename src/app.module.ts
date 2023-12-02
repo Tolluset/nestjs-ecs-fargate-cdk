@@ -7,7 +7,6 @@ import { HealthCheckService } from "./health-check/health-check.service";
 @Module({
   imports: [
     ConfigModule.forRoot({
-      envFilePath: [`.env.${process.env.NODE_ENV}`],
       isGlobal: true,
     }),
   ],
