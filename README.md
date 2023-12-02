@@ -4,7 +4,7 @@
 
 ```bash
 pnpm i
-pnpm start:dev
+pnpm start
 ```
 
 check localhost:3000
