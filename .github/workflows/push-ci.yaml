@@ -3,41 +3,42 @@ name: push-ci
 on: [push]
 
 jobs:
-  test:
+  app_test:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
       - uses: pnpm/action-setup@v2
+        with:
+          package_json_file: ./app/package.json
 
       - if: startsWith(github.ref, 'refs/heads')
-        working-directory: './app' 
+        working-directory: ./app
         run: |
           pnpm install --frozen-lockfile
           NODE_ENV=development pnpm test
 
       - if: startsWith(github.ref, 'refs/tags')
-        working-directory: './app' 
+        working-directory: ./app
         run: |
           pnpm install --frozen-lockfile
           NODE_ENV=production pnpm test
 
-  build:
+  app_build:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
       - uses: pnpm/action-setup@v2
+        with:
+          package_json_file: ./app/package.json
 
       - if: startsWith(github.ref, 'refs/heads')
-        working-directory: './app' 
+        working-directory: ./app
         run: |
-        run: |
-          cd app
           pnpm install --frozen-lockfile
           NODE_ENV=development pnpm build
 
       - if: startsWith(github.ref, 'refs/tags')
-        working-directory: './app' 
-        run: |
+        working-directory: ./app
         run: |
           pnpm install --frozen-lockfile
           NODE_ENV=production pnpm build
