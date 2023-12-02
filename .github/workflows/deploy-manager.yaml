@@ -32,7 +32,9 @@ jobs:
       - uses: pnpm/action-setup@v2
 
       - run: pnpm i --frozen-lockfile
+        working-directory: "./app"
       # - run: pnpm NODE_ENV=${{ github.event.inputs.env }} cdk:build
+      # working-directory: './app'
 
       - uses: aws-actions/configure-aws-credentials@v4
         with:
@@ -44,3 +46,4 @@ jobs:
           echo "get images from ecr"
 
       # - run: pnpm NODE_ENV=${{ github.event.inputs.env }} cdk:deploy
+      # working-directory: './app'
