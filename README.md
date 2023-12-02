@@ -14,7 +14,3 @@ check localhost:3000
 - Github Actions
 - AWS ECR/ECS/Fargate
 - AWS CDK
-
-```
-
-```
