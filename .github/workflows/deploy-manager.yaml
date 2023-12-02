@@ -40,5 +40,8 @@ jobs:
           role-to-assume: ${{ secrets.OIDC_ROLE_ARN }}
           aws-region: ap-northeast-2
 
-      - run: NODE_ENV=${{ github.event.inputs.env }} IMAGE_VERSION=${{ github.event.inputs.image_version }} pnpm deploy
+      - run: |
+          NODE_ENV=${{ github.event.inputs.env }} \
+          IMAGE_VERSION=${{ github.event.inputs.image_version }} \
+          pnpm cdk deploy --require-approval never
         working-directory: ./cdk
