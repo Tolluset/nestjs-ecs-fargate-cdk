@@ -30,6 +30,10 @@ jobs:
             NODE_ENV=development
           provenance: false
 
+      - name: image version dev
+        if: startsWith(github.ref, 'refs/heads')
+        run: echo "${{ github.sha }}"
+
       - name: push prd
         uses: docker/build-push-action@v5
         if: startsWith(github.ref, 'refs/tags')
@@ -40,3 +44,7 @@ jobs:
           build-args: |
             NODE_ENV=production
           provenance: false
+
+      - name: image version prd
+        if: startsWith(github.ref, 'refs/tags')
+        run: echo "${{ github.ref_name }}"
