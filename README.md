@@ -1,16 +1,11 @@
 # nestjs-ecs-fargatec-cdk
 
-## How to start
+## Project Structure
 
-```bash
-pnpm i
-pnpm start
-```
+- app
 
-check localhost:3000
+  - contain nestjs app
 
-## CI/CD
+- cdk
 
-- Github Actions
-- AWS ECR/ECS/Fargate
-- AWS CDK
+  - iac using aws cdk
