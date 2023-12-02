@@ -1,16 +1,14 @@
 import { Module } from "@nestjs/common";
 import { ConfigModule } from "@nestjs/config";
 
-import { HealthCheckController } from "./health-check/health-check.controller";
-import { HealthCheckService } from "./health-check/health-check.service";
+import { HealthCheckModule } from "./health-check/health-check.module";
 
 @Module({
   imports: [
     ConfigModule.forRoot({
       isGlobal: true,
     }),
+    HealthCheckModule,
   ],
-  controllers: [HealthCheckController],
-  providers: [HealthCheckService],
 })
 export class AppModule {}
