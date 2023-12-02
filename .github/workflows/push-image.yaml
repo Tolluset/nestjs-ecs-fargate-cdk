@@ -25,7 +25,7 @@ jobs:
         with:
           context: app
           push: true
-          tags: ${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.ap-northeast-2.amazonaws.com/nest:${{ github.sha }}
+          tags: ${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.ap-northeast-2.amazonaws.com/nest-dev:${{ github.sha }}
           build-args: |
             NODE_ENV=development
           provenance: false
@@ -40,7 +40,7 @@ jobs:
         with:
           context: app
           push: true
-          tags: ${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.ap-northeast-2.amazonaws.com/nest:${{ github.ref_name }}
+          tags: ${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.ap-northeast-2.amazonaws.com/nest-prd:${{ github.ref_name }}
           build-args: |
             NODE_ENV=production
           provenance: false
