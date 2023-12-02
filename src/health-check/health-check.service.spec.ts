@@ -13,7 +13,7 @@ describe("HealthCheckService", () => {
           provide: ConfigService,
           useValue: {
             get: jest.fn((key) => {
-              if (key === "ENV") {
+              if (key === "NODE_ENV") {
                 return "test";
               }
             }),

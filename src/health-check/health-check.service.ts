@@ -6,8 +6,8 @@ export class HealthCheckService {
   constructor(private configService: ConfigService) {}
 
   healthCheck(): string {
-    const ENV = this.configService.get<string>("ENV");
+    const NODE_ENV = this.configService.get<string>("NODE_ENV");
 
-    return `Health OK ${Date.now()} ${ENV}`;
+    return `Health OK ${Date.now()} ${NODE_ENV}`;
   }
 }
