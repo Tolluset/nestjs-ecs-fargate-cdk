@@ -12,6 +12,10 @@ on:
         description: "environmet name"
         required: true
         default: "production"
+        type: choice
+        options:
+          - development
+          - production
 jobs:
   deploy:
     runs-on: ubuntu-latest
