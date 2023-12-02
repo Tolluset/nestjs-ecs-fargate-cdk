@@ -10,6 +10,7 @@ import { HealthCheckService } from "./health-check/health-check.service";
   imports: [
     ConfigModule.forRoot({
       envFilePath: [`.env.${process.env.NODE_ENV}`],
+      isGlobal: true,
     }),
   ],
   controllers: [AppController, HealthCheckController],
