@@ -23,7 +23,7 @@ jobs:
         uses: docker/build-push-action@v5
         if: startsWith(github.ref, 'refs/heads')
         with:
-          context: app
+          context: packages/app
           push: true
           tags: ${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.ap-northeast-2.amazonaws.com/nest-dev:${{ github.sha }}
           platforms: linux/x86_64
@@ -39,7 +39,7 @@ jobs:
         uses: docker/build-push-action@v5
         if: startsWith(github.ref, 'refs/tags')
         with:
-          context: app
+          context: packages/app
           push: true
           tags: ${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.ap-northeast-2.amazonaws.com/nest-prd:${{ github.ref_name }}
           platforms: linux/x86_64
