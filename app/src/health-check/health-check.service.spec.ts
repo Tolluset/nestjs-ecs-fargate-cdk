@@ -1,8 +1,8 @@
-import { Test, TestingModule } from "@nestjs/testing";
-import { HealthCheckService } from "./health-check.service";
-import { ConfigService } from "@nestjs/config";
+import { Test, TestingModule } from '@nestjs/testing';
+import { HealthCheckService } from './health-check.service';
+import { ConfigService } from '@nestjs/config';
 
-describe("HealthCheckService", () => {
+describe('HealthCheckService', () => {
   let service: HealthCheckService;
 
   beforeEach(async () => {
@@ -13,8 +13,8 @@ describe("HealthCheckService", () => {
           provide: ConfigService,
           useValue: {
             get: jest.fn((key) => {
-              if (key === "NODE_ENV") {
-                return "test";
+              if (key === 'NODE_ENV') {
+                return 'test';
               }
             }),
           },
@@ -25,8 +25,8 @@ describe("HealthCheckService", () => {
     service = module.get<HealthCheckService>(HealthCheckService);
   });
 
-  it("should be defined", () => {
-    jest.spyOn(Date, "now").mockReturnValue(123);
-    expect(service.healthCheck()).toBe("Health OK 123 test");
+  it('should be defined', () => {
+    jest.spyOn(Date, 'now').mockReturnValue(123);
+    expect(service.healthCheck()).toBe('Health OK 123 test');
   });
 });

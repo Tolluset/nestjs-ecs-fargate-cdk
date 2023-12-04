@@ -1,7 +1,7 @@
-import { Module } from "@nestjs/common";
-import { ConfigModule } from "@nestjs/config";
+import { Module } from '@nestjs/common';
+import { ConfigModule } from '@nestjs/config';
 
-import { HealthCheckModule } from "./health-check/health-check.module";
+import { HealthCheckModule } from './health-check/health-check.module';
 
 @Module({
   imports: [
