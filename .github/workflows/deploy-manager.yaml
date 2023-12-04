@@ -35,7 +35,7 @@ on:
           - EcrStack
 jobs:
   deploy-service:
-    if: github.event.inputs.type == "service"
+    if: github.event.inputs.type == 'service'
     runs-on: ubuntu-latest
     steps:
       - name: check inputs
@@ -48,7 +48,7 @@ jobs:
       - run: echo "not yet"
 
   deploy-infra:
-    if: github.event.inputs.type == "infra"
+    if: github.event.inputs.type == 'infra'
     runs-on: ubuntu-latest
     permissions:
       id-token: write
@@ -76,5 +76,5 @@ jobs:
       - run: |
           NODE_ENV=${{ github.event.inputs.env }} \
           IMAGE_VERSION=${{ github.event.inputs.image_version }} \
-          pnpm cdk deploy ${{ github.events.inputs.stack }} --require-approval never
+          pnpm cdk deploy ${{ github.event.inputs.stack }} --require-approval never
         working-directory: ./packages/cdk
