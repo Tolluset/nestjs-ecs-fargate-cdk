@@ -3,10 +3,19 @@ name: deploy-manager
 on:
   workflow_dispatch:
     inputs:
+      type:
+        description: "deploy service or infra"
+        required: true
+        default: "service"
+        type: "choice"
+        options:
+          - "service"
+          - "infra"
+
       image_version:
         description: "image version"
         required: true
-        default: "latest"
+        default: ""
 
       env:
         description: "environmet name"
@@ -16,8 +25,30 @@ on:
         options:
           - development
           - production
+
+      stack:
+        description: "infra stack"
+        required: false
+        type: choice
+        options:
+          - CdkStack
+          - EcrStack
 jobs:
-  deploy:
+  deploy-service:
+    if: github.event.inputs.type == "service"
+    runs-on: ubuntu-latest
+    steps:
+      - name: check inputs
+        run: |
+          echo "${{ github.event.inputs.type }}"
+          echo "${{ github.event.inputs.image_version }}"
+          echo "${{ github.event.inputs.env }}"
+          echo "${{ github.event.inputs.stack }}"
+
+      - run: echo "not yet"
+
+  deploy-infra:
+    if: github.event.inputs.type == "infra"
     runs-on: ubuntu-latest
     permissions:
       id-token: write
@@ -43,5 +74,5 @@ jobs:
       - run: |
           NODE_ENV=${{ github.event.inputs.env }} \
           IMAGE_VERSION=${{ github.event.inputs.image_version }} \
-          pnpm cdk deploy --require-approval never
+          pnpm cdk deploy ${{ github.events.inputs.stack }} --require-approval never
         working-directory: ./packages/cdk
