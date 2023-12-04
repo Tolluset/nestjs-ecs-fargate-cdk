@@ -2,10 +2,12 @@
 
 ## Project Structure
 
-- app
+- packages
 
-  - contain nestjs app
+  - app
 
-- cdk
+    - contain nestjs app
 
-  - iac using aws cdk
+  - cdk
+
+    - iac using aws cdk
