@@ -15,13 +15,13 @@ on:
       env:
         description: "environmet name"
         required: true
-        default: "production"
+        default: "prd"
         type: choice
         options:
-          - development
-          - production
+          - dev
+          - prd
 
-      image_version:
+      image_digest:
         description: "image version"
         required: false
         default: ""
@@ -74,8 +74,5 @@ jobs:
           role-to-assume: ${{ secrets.OIDC_ROLE_ARN }}
           aws-region: ap-northeast-2
 
-      - run: |
-          NODE_ENV=${{ github.event.inputs.env }} \
-          IMAGE_VERSION=${{ github.event.inputs.image_version }} \
-          pnpm cdk deploy ${{ github.event.inputs.stack }} --require-approval never
+      - run: pnpm cdk deploy ${{ github.event.inputs.stack }} -c env=${{ github.event.inputs.env }} -c imageDigest=${{ github.event.inputs.image_digest }} --require-approval never
         working-directory: ./packages/cdk

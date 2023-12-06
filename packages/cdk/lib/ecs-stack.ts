@@ -7,14 +7,21 @@ import {
   aws_ecs as ecs,
 } from "aws-cdk-lib";
 
+type Props = {
+  envName: string;
+  imageDigest: string;
+} & StackProps;
+
 export class ECSStack extends Stack {
-  constructor(scope: Construct, id: string, props?: StackProps) {
+  constructor(scope: Construct, id: string, props?: Props) {
     super(scope, id, props);
+
+    const { envName, imageDigest } = props ?? {};
 
     const repository = ecr.Repository.fromRepositoryName(
       this,
       `${id}_ecs_from_repository_name`,
-      "nest-dev",
+      `nest-${envName}`,
     );
 
     const service = new ecs_patterns.ApplicationLoadBalancedFargateService(
@@ -22,10 +29,7 @@ export class ECSStack extends Stack {
       `${id}_ecs_patterns_ecs`,
       {
         taskImageOptions: {
-          image: ecs.ContainerImage.fromEcrRepository(
-            repository,
-            "e2fffbeb71a3eb62e8aa13c3f70f821ec52886d5",
-          ),
+          image: ecs.ContainerImage.fromEcrRepository(repository, imageDigest),
         },
       },
     );
