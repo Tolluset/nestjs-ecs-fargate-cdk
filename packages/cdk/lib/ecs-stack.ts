@@ -34,6 +34,9 @@ export class ECSStack extends Stack {
       {
         image: ecs.ContainerImage.fromEcrRepository(repository, imageDigest),
         portMappings: [{ containerPort: 3000 }],
+        logging: ecs.LogDrivers.awsLogs({
+          streamPrefix: "[LOGS]",
+        }),
       },
     );
 
