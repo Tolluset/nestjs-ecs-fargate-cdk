@@ -6,6 +6,9 @@ const VPC_CIDR = "10.100.0.0/16";
 
 const HTTP = 80;
 
+/**
+ * @deprecated this stack is not used anymore, this stack will be remained for studying trace
+ */
 export class CdkStack extends Stack {
   constructor(scope: Construct, id: string, props?: StackProps) {
     super(scope, id, props);
