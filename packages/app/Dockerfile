@@ -23,6 +23,6 @@ COPY --chown=node:node --from=build /app/dist /app/dist
 ARG NODE_ENV=prd
 ENV NODE_ENV $NODE_ENV
 
-EXPOSE 80 
+EXPOSE 3000 
 CMD [ "pnpm", "start" ]
 

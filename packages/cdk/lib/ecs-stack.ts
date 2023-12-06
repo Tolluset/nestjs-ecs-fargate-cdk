@@ -27,12 +27,12 @@ export class ECSStack extends Stack {
     const service = new ecs_patterns.ApplicationLoadBalancedFargateService(
       this,
       `${id}_ecs_patterns_ecs`,
-      {
-        taskImageOptions: {
-          image: ecs.ContainerImage.fromEcrRepository(repository, imageDigest),
-        },
-      },
     );
+
+    service.taskDefinition.addContainer(`${id}-addContainer`, {
+      image: ecs.ContainerImage.fromEcrRepository(repository, imageDigest),
+      portMappings: [{ containerPort: 3000 }],
+    });
 
     service.targetGroup.configureHealthCheck({
       path: "/health-check",
