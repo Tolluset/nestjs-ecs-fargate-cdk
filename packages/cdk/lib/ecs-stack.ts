@@ -26,6 +26,7 @@ export class ECSStack extends Stack {
             repository,
             "e2fffbeb71a3eb62e8aa13c3f70f821ec52886d5",
           ),
+          containerPort: 3000,
         },
         // publicLoadBalancer: true,
       },
