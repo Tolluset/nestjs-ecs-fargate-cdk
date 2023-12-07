@@ -13,7 +13,7 @@ on:
           - "infra"
 
       env:
-        description: "environmet name"
+        description: "environment name"
         required: true
         default: "prd"
         type: choice
@@ -34,6 +34,7 @@ on:
           - CdkStack
           - EcsStack
           - EcrStack
+          - None
 jobs:
   deploy-service:
     if: github.event.inputs.type == 'service'
@@ -49,7 +50,7 @@ jobs:
       - run: echo "not yet"
 
   deploy-infra:
-    if: github.event.inputs.type == 'infra'
+    if: github.event.inputs.type == 'infra' && github.event.inputs.stack !== 'None'
     runs-on: ubuntu-latest
     permissions:
       id-token: write
