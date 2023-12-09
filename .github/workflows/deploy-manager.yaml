@@ -50,7 +50,7 @@ jobs:
       - run: echo "not yet"
 
   deploy-infra:
-    if: github.event.inputs.type == 'infra' && github.event.inputs.stack !== 'None'
+    if: github.event.inputs.type == 'infra' && github.event.inputs.stack != 'None'
     runs-on: ubuntu-latest
     permissions:
       id-token: write
