@@ -17,6 +17,6 @@
 - deploy-manager.yaml
   - deploy service container or infrastructure
 
-## ENDPOINT
+## others
 
-- http://ecssta-ecsst-zgjkdcozikyj-649034930.ap-northeast-2.elb.amazonaws.com/health-check
+[slides that what I learned(korean)](https://docs.google.com/presentation/d/1gCeyLfMwCQ7n8NffnsuAxjWWGjEqyLpWkCP2nJgj6K4/edit#slide=id.p)
